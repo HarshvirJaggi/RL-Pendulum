@@ -5,6 +5,7 @@ exclude = '''
   \.toml
   |\.sh
   |\.git
+  |\.venv
   |\.ini
   |Dockerfile
   |Jenkinfile
