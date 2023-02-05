@@ -1,23 +1,15 @@
 """Pendulum."""
-import os
+import gymnasium as gym
 
-os.environ["SDL_AUDIODRIVER"] = "dsp"
-os.environ["SDL_VIDEODRIVER"] = "dummy"
+env = gym.make("CartPole-v1", render_mode="human")
+observation, info = env.reset()
 
-import pygame
+for i in range(1000):
+    action = env.action_space.sample()  # agent policy that uses the observation and info
+    observation, reward, terminated, truncated, info = env.step(action)
+    print(f"Observation: {observation}    Reward: {reward]")
 
-pygame.init()
-pygame.display.list_modes()
-# import gymnasium as gym
+    if terminated or truncated:
+        observation, info = env.reset()
 
-# env = gym.make("CartPole-v1", render_mode="human")
-# observation, info = env.reset()
-
-# for i in range(1000):
-#     action = env.action_space.sample()  # agent policy that uses the observation and info
-#     observation, reward, terminated, truncated, info = env.step(action)
-
-#     if terminated or truncated:
-#         observation, info = env.reset()
-
-# env.close()
+env.close()
